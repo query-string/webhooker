@@ -1,5 +1,6 @@
 require 'curb'
 require 'json'
+require 'dotenv/load'
 
 class Travis
   def self.call(branch)
@@ -11,7 +12,7 @@ class Travis
       curl.headers['Content-Type'] = 'application/json'
       curl.headers['Accept'] = 'application/json'
       curl.headers['Travis-API-Version'] = '3'
-      curl.headers['Authorization'] = "token ENV['TRAVIS_TOKEN']"
+      curl.headers['Authorization'] = "token #{ENV['TRAVIS_TOKEN']}"
       curl.verbose = true
     end
     
